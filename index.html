@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div id="my_canvas"></div>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="preload" href="./fonts/qiji.woff" as="font" crossorigin>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <title>HeartKey</title>
+</head>
+<body>
+<!--引号里的待补全，导航栏的内容，最左面的图片是logo-->
+
+<!---正文--->
+<!---首页封面--->
+<section class="with-navigation">
+      <div class="border1">
+  <div class="yellowbg">
+
+    <nav class="navbar">
+    <div class="navbar-container">
+        <img src="./pic/logo.png" alt="Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="#intro" class="nav-button" style="font-size: 26px;">社会背景</a></li>
+            <li><a href="#product" class="nav-button" style="font-size: 26px;">产品介绍</a></li>
+            <li><a href="#design" class="nav-button" style="font-size: 26px;">产品设计</a></li>
+            <li><a href="#conclusion" class="nav-button" style="font-size: 26px;">结语</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="frame">
+    <table >
+      <tr>
+        <td style="width:50vw;margin:0 auto;">
+          <img src="./pic/title.png" style="width:90%;">
+            <br>
+            <div>
+            <p style="text-align: center">
+                北师香港浸会大学<br>
+                心之怪盗团<br>
+                指导老师：陈蓉蓉 徐妙<br>
+                小组成员：高畅 付旻萱 朱笑语 韩佩妤 王怡轩 杨怡琨
+            </p>
+            </div>
+          
+        </td>
+        <td class="center-image" style="margin:0 auto;">
+          <img id="title-logo" src="./pic/logo.png" alt="产品标识">
+        </td>
+      </tr>
+    </table>
+</div>
+</div>
+</div>
+</section>
+
+<!---引入--->
+<section id="intro">
+<div class="yellowbg">
+<div class="comic-container" onclick="handleClick()" style="width:100%;height:100%;background:linear-gradient(to bottom,#f3e8dc,#9fa76d)">
+  <div class="comic">
+    <div class="panel top-left" style="opacity:1;"> <!-- 初始显示第一张 -->
+      <img src="./pic/comic1.png" alt="Top Left Panel">
+    </div>
+    <div class="panel bottom" style="opacity:0;"> <!-- 初始隐藏第二张 -->
+      <img src="./pic/comic2.jpg" alt="Bottom Panel">
+    </div>
+    <div class="panel top-right" style="opacity:0;"> <!-- 初始隐藏第三张 -->
+      <img src="./pic/comic3.png" alt="Top Right Panel">
+    </div>
+  </div>
+</div>
+</div>
+<script>
+let clickCount = 0;
+
+function handleClick() {
+  clickCount++;
+  
+  if(clickCount === 1) {
+    // 第一次点击显示第二张
+    document.querySelector('.panel.bottom').style.opacity = '1';
+    document.querySelector('.panel.bottom').style.animation = 'fadeIn 1s ease forwards';
+  } 
+  else if(clickCount === 2) {
+    // 第二次点击显示第三张
+    document.querySelector('.panel.top-right').style.opacity = '1';
+    document.querySelector('.panel.top-right').style.animation = 'fadeIn 1s ease forwards';
+  }
+  // 更多点击可以继续添加逻辑
+}
+</script>
+
+<!---承接页1--->
+<div class="yellowbg">
+<div class="transition" style="width:100%;height:100vh;background:linear-gradient(to bottom,#9fa76d,#f3e8dc)">
+    <div class="content-wrapper">
+      <p class="answer-text" style="font-size: 36px; ">
+      <span>人人都会经历乌云笼罩心头的时候</span>
+      </br><span>可如果阳光没有及时照亮天空</span>
+      </br><span>一场名为“心理疾病”的暴雨便会倾洒而下......</span>
+    </p >
+    </div>
+</div>
+</div>
+
+<!---世界地图--->
+<div class="yellowbg">
+<section class="with-navigation">
+<nav class="navbar-red">
+  <div class="navbar-container">
+    <img src="./pic/logo.png" alt="Logo" class="logo">
+    <ul class="nav-links">
+      <li><a href="#intro" class="nav-button-red" style="font-size: 26px;">社会背景</a></li>
+      <li><a href="#product" class="nav-button-red" style="font-size: 26px;">产品介绍</a></li>
+      <li><a href="#design" class="nav-button-red" style="font-size: 26px;">产品设计</a></li>
+      <li><a href="#conclusion" class="nav-button-red" style="font-size: 26px;">结语</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="section-content">
+   <div id="map-container" style="width:90vw ;height:75vh; margin:10px auto;"></div>
+  <div id="controls">
+    <select id="disease-selector">
+      <option value="Schizophrenia">精神分裂症</option>
+      <option value="Depression">抑郁症</option>
+      <option value="Anxiety">焦虑症</option>
+      <option value="Bipolar">双相情感障碍</option>
+      <option value="EatingDisorders">饮食失调</option>
+      <option value="AlcoholUse">酒精使用障碍</option>
+    </select>
+    <button id="toggle-chart">切换中国折线图</button>
+    <button id="pause-animation">暂停动画</button>
+  </div>
+  <div class="citation" style="background-color: #f3e8dc;">
+            数据来源：<a href="https://www.kaggle.com/code/shaikhibnasazzad/my-model-mental-health-disorder/input" target="_blank">Shaikh Ibna Sazzad. (2024). My_model_mental-health-disorder. Kaggle.</a>
+        </div>
+</div>
+</div>
+</section>
+    <hr/>
+<br/>
+
+<!---承接页2--->
+<div class="greenbg">
+<div class="transition" style="width:100vw;height:100vh;">
+    <div class="content-wrapper">
+      <p class="answer-text" style="color:#f3e8dc;font-size: 36px; ">
+      <span>近几年来，有关心理健康的议题已逐渐得到重视。</span>
+      </br><span>自2019年起，我国各级政府便陆续出台文件以加强心理健康教育、提升居民心理健康素养。</span>
+    </p >
+    </div>
+</div>
+</div>
+
+<!---时间轴--->
+<div class="greenbg">
+    <div class="timeline-clock-container">
+        <div class="left-window-pattern"></div>
+        <div class="left-bamboo-decoration"></div>
+        <div class="timeline-clock-main">
+            <div class="timeline-clock-controls">
+                <button class="timeline-clock-up-btn"></button>
+                <button class="timeline-clock-down-btn"></button>
+            </div>
+            <div class="timeline-clock-content"></div>
+            <div class="timeline-clock">
+                <img src="./pic/greenclock.png" class="clock-bg-image" alt="三兔共耳">
+                <div class="timeline-clock-table"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---承接页3--->
+<div class="yellowbg" style="background:linear-gradient(to bottom,#f3e8dc,#9fa76d)">
+  <div class="trans3bg">
+<div class="transition" style="width:100vw;height:100vh;">
+
+    <div class="content-wrapper">
+    <p class="answer-text" style="font-size: 36px; ">
+    <span>保护心理健康是一场需要多方合作的“持久战”。</span>
+    </br><span>在政策保障之外，如何在日常生活中对自我的烦恼进行及时调节，以免“乌云”逐渐扩大？</span>
+  </br>
+    </br><span>针对这一问题，我们给出的解答是：</span>
+  </p >
+    <img class="logo" src="./pic/logo.png" alt="Logo">
+  </div>
+</div>
+<div>
+  </div>
+</section>
+
+<!---产品介绍--->
+<section id="product">
+  <div class="firstpage">
+<div class="yellowbg">
+
+<section class="with-navigation">
+    <nav class="navbar">
+    <div class="navbar-container">
+        <img src="./pic/logo.png" alt="Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="#intro" class="nav-button" style="font-size: 26px;">社会背景</a></li>
+            <li><a href="#product" class="nav-button" style="font-size: 26px;">产品介绍</a></li>
+            <li><a href="#design" class="nav-button" style="font-size: 26px;">产品设计</a></li>
+            <li><a href="#conclusion" class="nav-button" style="font-size: 26px;">结语</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="section-content">
+<div class="container">
+<!---新产品介绍-->
+    <div class="main-container">
+        <!-- 内容区域 -->
+        <div class="content-container">
+            <!-- 左侧理论区域 -->
+             
+            <div class="left-section">
+              <div id="left-text"><p style="font-size:36px;">理论</p></div>
+                <div class="image-box" id="theory-image-box">
+                   <img src="./pic/theory1.png" class="theory-image">
+                </div>
+            </div>
+            
+            <!-- 中间按钮列 -->
+            <div class="center-buttons">
+                <div class="button-container">
+                    <div class="circle-button active" data-target="section1">
+                        <span style="font-size:24px;">阅读规则</span>
+                    </div>
+                    <div class="connector-line"></div>
+                    <div class="circle-button" data-target="section2">
+                        <span style="font-size:24px;">拆解产品</span>
+                    </div>
+                    <div class="connector-line"></div>
+                    <div class="circle-button" data-target="section3">
+                        <span style="font-size:24px;">回忆联想</span>
+                    </div>
+                    <div class="connector-line"></div>
+                    <div class="circle-button" data-target="section4">
+                        <span style="font-size:24px;">拼合产品</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧产品区域 -->
+             
+            <div class="right-section">
+              <div id="right-text"><p style="font-size:36px;">产品</p></div>
+                <div class="image-box" id="product-image-box">
+                    <img src="./pic/product1.png" class="product-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 图片数据配置
+    const imageData = {
+        section1: {
+            theory: "./pic/theory1.png",
+            product: "./pic/product1.png"
+        },
+        section2: {
+            theory: "./pic/Embodied Cognition.png",
+            product: "./pic/product2.png"
+        },
+        section3: {
+            theory: "./pic/Cognitive Reappraisal.png",
+            product: "./pic/product3.png"
+        },
+        section4: {
+            theory: "./pic/Cognitive Restructuring.png",
+            product: "./pic/product4.png"
+        }
+    };
+
+    // 按钮点击事件
+    const buttons = document.querySelectorAll('.circle-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            // 更新按钮状态
+            buttons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // 获取目标section
+            const target = this.getAttribute('data-target');
+            
+            // 切换图片
+            document.querySelector('.theory-image').src = imageData[target].theory;
+            document.querySelector('.product-image').src = imageData[target].product;
+        });
+    });
+});
+    </script>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<!---视频--->
+<div>
+    <!-- 点击文字 -->
+    <div class="click-text" id="clickText" style="font-family: STXingKai;font-size: 66px;">点击即看拆拼教程</div>
+    <!-- 视频弹窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            <video controls id="tutorialVideo">
+                <source src="./pic/video.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+        </div>
+    </div>
+</div>
+  <script>
+        // JavaScript 代码
+        document.addEventListener('DOMContentLoaded', function() {
+            const clickText = document.getElementById('clickText');
+            const videoModal = document.getElementById('videoModal');
+            const closeBtn = document.getElementById('closeBtn');
+            const tutorialVideo = document.getElementById('tutorialVideo');
+            
+            // 点击文字打开视频弹窗
+            clickText.addEventListener('click', function() {
+                videoModal.style.display = 'flex';
+                tutorialVideo.play();
+            });
+            
+            // 点击关闭按钮关闭弹窗
+            closeBtn.addEventListener('click', function() {
+                videoModal.style.display = 'none';
+                tutorialVideo.pause();
+                tutorialVideo.currentTime = 0;
+            });
+            
+            // 点击模态框背景也关闭弹窗
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    videoModal.style.display = 'none';
+                    tutorialVideo.pause();
+                    tutorialVideo.currentTime = 0;
+                }
+            });
+            
+            // 按ESC键关闭弹窗
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && videoModal.style.display === 'flex') {
+                    videoModal.style.display = 'none';
+                    tutorialVideo.pause();
+                    tutorialVideo.currentTime = 0;
+                }
+            });
+        });
+  </script>
+</section>
+
+<!---词云--->
+
+<section id="design">
+  <div class="yellowbg">
+    <section class="with-navigation">
+      <div class="wordcloudbg">
+        <nav class="navbar-red">
+          <div class="navbar-container">
+            <img src="./pic/logo.png" alt="Logo" class="logo">
+            <ul class="nav-links">
+              <li><a href="#intro" class="nav-button-red" style="font-size: 26px;">社会背景</a></li>
+              <li><a href="#product" class="nav-button-red" style="font-size: 26px;">产品介绍</a></li>
+              <li><a href="#design" class="nav-button-red" style="font-size: 26px;">产品设计</a></li>
+              <li><a href="#conclusion" class="nav-button-red" style="font-size: 26px;">结语</a></li>
+            </ul>
+          </div>
+        </nav>
+        
+        <div class="box1">
+          <div class="section-content1" style="height:60vh;">
+            <div class="text-left">
+              <p style="color:#f3e8dc;font-size:22px;margin-top:10px;">
+                产品中所使用的"烦恼相关"关键词从b站、微博、小红书、抖音共四个社交平台上用户近期发帖中收集，如词云中所示（考虑到用户发帖主观因素较强，关键词均为社交平台帖子中出现词频排序较高的词语）。
+              </p>
+            </div>
+            
+            <div class="visualization-container1">
+              <div class="wordcloud-container">
+                <div id="wrap">
+                  <!-- 词云图内容保持不变 -->
+                  <span class="tag" data-value="808" style="color:#FFF9C4;">人</span>
+                  <span class="tag" data-value="389" style="color:#CDDC39;">事</span>
+                  <span class="tag" data-value="311" style="color:#80DEEA;">生活</span>
+                  <span class="tag" data-value="289" style="color:#C8E6C9;">工作</span>
+                  <span class="tag" data-value="256" style="color:#DCEDC8;">时候</span>
+                  <span class="tag" data-value="239" style="color:#E6EE9C;">感觉</span>
+                  <span class="tag" data-value="277" style="color:#FFCCBC;">人生</span>
+                  <span class="tag" data-value="173" style="color:#F8BBD0;">情绪</span>
+                  <span class="tag" data-value="149" style="color:#E1BEE7;">钱</span>
+                  <span class="tag" data-value="143" style="color:#BBDEFB;">妈妈</span>
+                  <span class="tag" data-value="132" style="color:#E0E0E0;">心情</span>
+                  <span class="tag" data-value="128" style="color:#BDBDBD;">朋友</span>
+                  <span class="tag" data-value="126" style="color:#B3E5FC;">问题</span>
+                  <span class="tag" data-value="120" style="color:#D1C4E9;">时间</span>
+                  <span class="tag" data-value="120" style="color:#D7CCC8;">心</span>
+                  <span class="tag" data-value="101" style="color:#A5D6A7;">手记</span>
+                  <span class="tag" data-value="96" style="color:#64B5F6;">大家</span>
+                  <span class="tag" data-value="88" style="color:#CE93D8;">世界</span>
+                  <span class="tag" data-value="87" style="color:#9E9E9E;">内耗</span>
+                  <span class="tag" data-value="80" style="color:#BCAAA4;">小雪</span>
+                  <span class="tag" data-value="65" style="color:#81C784;">老师</span>
+                  <span class="tag" data-value="64" style="color:#90CAF9;">父母</span>
+                  <span class="tag" data-value="58" style="color:#B39EBC;">身体</span>
+                  <span class="tag" data-value="58" style="color:#757575;">压力</span>
+                  <span class="tag" data-value="57" style="color:#A1887F;">视频</span>
+                  <span class="tag" data-value="56" style="color:#2E7D32;">表情</span>
+                  <span class="tag" data-value="56" style="color:#1565C0;">学校</span>
+                  <span class="tag" data-value="54" style="color:#7B1FA2;">孩子</span>
+                  <span class="tag" data-value="50" style="color:#8D6E63;">姐姐</span>
+                  <span class="tag" data-value="48" style="color:#1B5E20;">病</span>
+                  <span class="tag" data-value="46" style="color:#78909C;">状态</span>
+                  <span class="tag" data-value="45" style="color:#664658;">手机</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-right">
+              <p style="text-align:right;color:#f3e8dc;font-size:22px;">
+                由于限制原因（数据量、可视化呈现等），并未在此呈现全部数据，所展示的关键词以供参考当代中国人所面临的不同烦恼。
+              </p>
+            </div>
+            
+            
+          </div>
+          <div class="citation1">数据来源：利用八爪鱼爬虫合法从微博、抖音、小红书、B站爬取的相关帖子/视频，样本量为4435条，经筛选使用前32条高频词汇后生成3D词云图。</div>
+        </div>
+        
+        </div>
+</div>
+
+    </section>
+
+
+<!--扇形统计图-->
+
+<div class="yellowbg">
+
+<section class="with-navigation">
+<nav class="navbar-red">
+  <div class="navbar-container">
+    <img src="./pic/logo.png" alt="Logo" class="logo">
+    <ul class="nav-links">
+      <li><a href="#intro" class="nav-button-red" style="font-size: 26px;">社会背景</a></li>
+      <li><a href="#product" class="nav-button-red" style="font-size: 26px;">产品介绍</a></li>
+      <li><a href="#design" class="nav-button-red" style="font-size: 26px;">产品设计</a></li>
+      <li><a href="#conclusion" class="nav-button-red" style="font-size: 26px;">结语</a></li>
+    </ul>
+  </div>
+</nav>
+  <div class="piechart" style="height:80vh">
+<div class="section-content">
+  <div class="text1" style="width:60%;margin:0 auto;height:20vh;">
+    <p style="font-size:24px;">在全体数据中选取与特定主题相关帖子进行深入分析，从中统计与积极情绪和消极情绪分别相关的8个出现频率最高的关键字。这些关键字被以偏旁部首的方式拆分为单体字，成为产品木块上的供用户拆拼的“线索”。</p>
+    </div>
+    <div class="chart-group" style="height:100vh;">
+        <div id="pie-container-left" class="chart" style="margin-right:auto;"></div>
+            <center>
+              <div class="buttongroup">
+              <button id="btn-group-1" class="piebtn">事业</button>
+              <br/>
+              <button id="btn-group-2" class="piebtn">人际</button>
+              <br/>
+              <button id="btn-group-3" class="piebtn">学业</button>
+              <br/>
+              <button id="btn-group-4" class="piebtn">健康</button>
+              </div>
+            </center>
+        <div id="pie-container-right" class="chart" style="margin-left:auto;"></div>
+    </div>
+</div>
+</div>
+<div class="citation">数据来源：利用八爪鱼爬虫合法从微博、抖音、小红书、B站爬取相关数据，经数据清洗后得到八组数据 共计10718 条。通过使用停用词表筛除无意义词汇，并对相似意义词语进行合并，最终筛选出与各主题紧密相关的前 8 个高频词生成饼状图 。</div>
+</div>
+</section>
+
+
+<!---语料库+互助社区--->
+
+<div class="yellowbg">
+
+
+<div class="community">
+  <section class="with-navigation">
+<nav class="navbar-red">
+  <div class="navbar-container">
+    <img src="./pic/logo.png" alt="Logo" class="logo">
+    <ul class="nav-links">
+      <li><a href="#intro" class="nav-button-red" style="font-size: 26px;">社会背景</a></li>
+      <li><a href="#product" class="nav-button-red" style="font-size: 26px;">产品介绍</a></li>
+      <li><a href="#design" class="nav-button-red" style="font-size: 26px;">产品设计</a></li>
+      <li><a href="#conclusion" class="nav-button-red" style="font-size: 26px;">结语</a></li>
+    </ul>
+  </div>
+</nav>
+  <div class="section-content">
+    <div style="width:100vw; height:90vh;">
+      <div class="quadrant-layout">
+        <!-- 左上角图片 -->
+        <div class="item top-left" style="padding:0 5px;background-color: #9fa76d;border-radius: 15px;">
+          <img src="./pic/ai.jpg" alt="AI分析语料库" class="aicomimg">
+        </div>
+        
+        <!-- 左下角文字 -->
+        <div class="item bottom-left" style="  background-image: url('../pic/communitybg1.png'); background-size:100% 100%;border-radius: 15px;">
+          <p style="color:black;font-size: 24px; ">咨询场景中，咨询师可通过CASIA汉语情感语料库与LIWC(Linguistic Inquiry and Word Count)对来访者写下、讲述的故事进行分析追踪，以准确制定后续咨询计划。</p>
+        </div>
+        
+        <!-- 右上角文字 -->
+        <div class="item top-right" style="background-color: #9fa76d;border-radius: 15px;">
+          <p style="color:black;font-size: 24px;">通过支持分享拆拼锁具时发现的汉字、相关经历故事及善意留言，设置点赞功能促进用户共鸣互动，并以正向激励增强用户凝聚力与归属感...</p>
+        </div>
+        
+        <!-- 右下角图片 -->
+        <div class="item bottom-right" style="padding:0 5px;border-radius: 15px;background-color: white;border-radius: 15px;"">
+          <img src="./pic/community2.jpg" alt="社区互动示意图" class="aicomimg">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</div>
+</section>
+
+<!---结语--->
+<div class="yellowbg">
+    <section id="conclusion">
+        <div class="main-content" style="height:100vh">
+            <table style="width:90%;height:90%;top:0px;margin:0 auto;">
+                <tr>
+                    <!-- 左侧竖排文字 -->
+                    <td style="width:20%;vertical-align:middle;text-align:center;">
+                        <div class="vertical-text">
+                            <img src="./pic/titleconclu.png" alt="心字孔明锁" style="max-width:100%;max-height:100%;">
+                        </div>
+                    </td>
+                    <!-- 中间副标题 -->
+                    <td style="width:60%;text-align:center;vertical-align:bottom;">
+                        <div class="subtitle">
+                            <img src="./pic/subtitleconclu.png" alt="副标题" style="max-width:100%;max-height:100%;">
+                        </div>
+                    </td>
+                    <!-- 右侧竖排小字和LOGO -->
+                    <td style="width:20%;vertical-align:middle;text-align:center;">
+                        <!-- 右上角logo -->
+                        <div class="conclulogo">
+                            <img src="./pic/logo.png" alt="Logo" style="max-width:100%;max-height:100%;">
+                        </div> 
+                        <div class="side-text" style="width:110%;">
+                            <p>北师香港浸会大学<br>
+                            心之怪盗团<br>
+                            指导老师：陈蓉蓉 徐妙<br>
+                            小组成员：高畅 付旻萱 朱笑语<br/>
+                            韩佩妤 王怡轩 杨怡琨</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</div>
+
+<!---references--->
+<!---格式直接在style修改即可--->
+<div class="greenbg">
+  <div style="width:90vw;margin:0 auto;">
+    <h3 class="reference">参考文献</h3>
+  </div>
+  <div class="refer-box">
+  <div style="width:90%;height:100vh;margin:20px auto;font-family: 'Times New Roman', Times, serif;">
+       [1]Bodner, G.M.& McMillen, T.L.B. (1986). Cognitive restructuring as an early stage in problem solving. <cite>J. Res. Sci. Teach</cite>., 23: 727-737.<br>
+       [2]Buhle, J. T., Silvers, J. A., Wager, T. D., Lopez, R., Onyemekwu, C., Kober, H., Weber, J., & Ochsner, K. N. (2014). Cognitive reappraisal of emotion: A meta-analysis of human neuroimaging studies. <cite>Cerebral Cortex, 24</cite>(11), 2981–2990.<br>
+       [3]Larsson, A., Hooper, N., Osborne, L. A., Bennett, P.&McHugh, L. (2016). Using Brief Cognitive Restructuring and Cognitive Defusion Techniques to Cope With Negative Thoughts. <cite>Behavior Modification, 40</cite>(3),452-482.<br>
+       [4]Marks, I., Lovell, K., Noshirvani, H., Livanou, M.& Thrasher, S. (1998). Treatment of Posttraumatic Stress Disorder by Exposure and/or Cognitive Restructuring: A Controlled Study. <cite>Arch Gen Psychiatry. 55</cite>(4), 317–325.<br>
+       [5]Niedenthal, P. M. (2007)Embodying Emotion. <cite>Science, 316</cite>(5827), 1002–1005.<br>
+       [6]Purdon, C. (2021). Cognitive restructuring. In A. Wenzel (Ed.), <cite>Handbook of cognitive behavioral therapy: Overview and approaches</cite> (pp. 207–234). American Psychological Association.<br>
+       [7]Sazzad, S. I. (2024). My model mental-health-disorder. In Kaggle.<br>
+       [8]Sheppes, G., Suri, G., & Gross, J. J. (2015). Cognitive reappraisal and acceptance: Effects on emotion, physiology, and perceived cognitive costs. <cite>Emotion, 15</cite>(1), 12–19.<br>
+       [9]Taylor, S., Woody, S., Koch, W. J., Mclean, P., Paterson, R. J.& Anderson, K. W. (1997). Cognitive Restructuring in the Treatment of Social Phobia. <cite>Behavior Modification. 21</cite>(4), pp. 487 - 511.<br>
+       [10]Wilson, M. (2002). Six views of embodied cognition. <cite>Psychonomic Bulletin & Review, 9</cite>(4), 625–636.<br>
+       [11]Wolgast, M., Lundh, L.-G., & Viborg, G. (2011). Cognitive reappraisal and acceptance: An experimental comparison of two emotion regulation strategies. <cite>Behaviour Research and Therapy, 49</cite>(12), 858–866.<br>
+       [12]Yang, L., & Li, M. (2014). The review of acceptance, cognitive reappraisal, expression suppression in emotion regulation strategies. <cite>Advances in Psychology, 4</cite>(1), 80–88.<br>
+       [13]广东省卫健委等. (2025). “精神卫生服务年”行动实施方案（2025-2027年）. 广东省疾病预防控制中心网站.<br>
+       [14]河南省教育厅. (2021). 关于加强中小学生心理危机识别和干预工作的通知. 河南省教育厅.<br>
+       [15]健康中国行动推进委员会. (2019). 健康中国行动（2019-2030年）. 卫生健康委网站.<br>
+       [16]江西省人民政府办公厅. (2025). 儿童青少年心理健康促进方案（2025-2027年）. 江西省人民政府.<br>
+    </div> 
+    </div>
+<div class="greenbg">
+  <div style="width:90vw;margin:20px auto;">
+    <h3 class="reference">参考文献</h3>
+  </div>
+    <div class="refer-box">
+  <div style="width:90%;margin:20px auto;height:80vh;font-family: 'Times New Roman', Times, serif;"> 
+       [17]教育部等十七部门. (2023). 全面加强和改进新时代学生心理健康工作专项行动计划. 教育部政府门户网站.<br>
+       [18]人物. (2025). 9岁围棋天才少年的坠落. In 微信公众号.<br>
+       [19]山东省教育厅&山东省卫生健康委. (2021). 关于加快推进全省大中小学心理健康教育体系建设的意见. 山东省教育厅.<br>
+       [20]陕西省教育厅等十七部门 .（2024）. 全面加强和改进新时代陕西省学生心理健康工作专项行动计划. 陕西省人民政府.<br>
+       [21]四川日报.（2024）.<cite>6项任务5大举措 四川18部门携手守护学生心理健康</cite>. 四川省人民政府网站.<br>
+       [22]叶浩生, 苏佳佳, 苏得权.(2021). 身体的意义：生成论视域下的情绪理论. <cite>心理学报, 53</cite>(12), 1393–1404.<br> 
+       [23]张克, 杜秀敏. (2023). 具身认知视角下的创造性思维. <cite>心理学报, 55</cite>(12).<br> 
+       [24]重庆市政府. (2024). 精神卫生体系建设三年行动计划（2023-2025年）. 重庆市人民政府网.
+  </div>
+</div>
+</div>
+
+</div>
+
+<!---引入js的代码--->
+  <!---按在网页内呈现的顺序引入--->
+  <script src="./js/echarts.min.js"></script> <!---必须在第一个--->
+  <script src="./js/worldmap.js"></script>
+  <script src="./js/timeline-clock.js"></script>
+  <script src="./js/3Dwordcloud.js"></script>
+  <script src="./js/Piechart.js"></script>
+  <!---初始化脚本--->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 初始化词云
+    if (window.generateWordCloud) {
+      generateWordCloud('wordcloud-container');
+    }
+    
+    // 初始化饼图（默认显示第一组）
+    if (window.showChartGroup) {
+      showChartGroup(1);
+
+      
+      // 绑定按钮事件
+      document.getElementById('btn-group-1').onclick = function() { showChartGroup(1); };
+      document.getElementById('btn-group-2').onclick = function() { showChartGroup(2); };
+      document.getElementById('btn-group-3').onclick = function() { showChartGroup(3); };
+      document.getElementById('btn-group-4').onclick = function() { showChartGroup(4); };
+    }
+
+    // 初始化折线图
+    if (window.initLineChart) {
+      initLineChart('linechart-container');
+    }
+    if (window.initLineChart) {initLineChart('linechart-container'); }
+
+    // 初始化地图
+    if (window.initMapChart){
+      initMapChart();
+    }
+  });
+
+</script>
+   
+</body>
+</html>
